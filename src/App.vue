@@ -1,6 +1,8 @@
 
 <template>
    <h1> {{ title }} </h1> 
+   {{reverseMessage ()}}
+   <!-- el reverseMessage () almacena  -->
   <p v-if="isVisible">  {{ description }}</p>
   <p v-else>Este es un mensaje que se oculta</p> 
  
@@ -37,20 +39,25 @@ export default {
     return{
       title,
       description,
-      isVisible
-    }
+      isVisible,
+    };
   },
- /*   data (){
+   data (){
    return {
-     title: "Hi",
-     description: "Primer vue",
-  };
-  }  */
+     message: 'Hola Ed'
+    };
+  }, 
+  methods:{
+    /* this trae los valores, split elimina los espacios, reverse, join une el arreglo */
+    reverseMessage: function() {
+      return this.message.split("").reverse().join("")
+    }
+  }
 };
 
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

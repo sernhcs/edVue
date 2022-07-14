@@ -3,42 +3,47 @@
 
 <!-- con el keyup manda a la presión de la tecla con el enter solo para esa tecla -->
  <input type="text" v-model="newTask" @keyup.enter="addTask"/>
+ <div class="">
+  <p>Total de tareas: {{sizeOfCompletedTasks}}</p>
+ </div>
  <ul>
    
     <!--  
      v else es el sino, en este caso si es falso aparece, si es verdadero aparece el otro mensaje de description
      v-bind enlaza y los task.ids, se puede reemplazar :
     -->
-   <li
-    :class="{'margin-15': isDesktop }" 
-    :style="{
-      color: activeColor,
-      background: background,
-      fontSize: fontSize + 'px',
-    }"
-     
+   <TodoItem
+          
     v-for="task in tasks" 
-    :key="task.id"> 
-     {{task.task}} 
-    </li>
+    :key="task.id"
+    :task="task"
+    :is-desktop="isDesktop"
+    />
   </ul>
 </template>
 <script>
-import{ v4 as uuidv8 } from 'uuid';
-import { ref    } from 'vue';
+import{ v4 as uuidv8 } from "uuid";
+import { computed, ref, watch    } from "vue";
+import TodoItem from "./TodoItem.vue";
+
 export default {
-  name: 'Todo',
-  setup(){
+  name: "todo",
+  components: {
+    TodoItem,
+},
+
+
+  setup () {
     const tasks = ref([
       {
         id:uuidv8(),
         task: 'Crear curso',
-        isCompleted: false
+        isCompleted: true
       },
       {
         id:uuidv8(),
         task: 'Revisar comentarios',
-        isCompleted: false
+        isCompleted: true
       },
       {
         id:uuidv8(),
@@ -69,6 +74,20 @@ export default {
       newTask.value="";
     }
 
+//computed properties
+const sizeOfCompletedTasks = computed(() =>{
+  const completedTasks = tasks.value.filter((task)=> {
+    return task.isCompleted === true;
+  });
+  return completedTasks.length;
+});
+
+
+//watchers
+watch(newTask, (current, prev)=> {
+  console.log(`se ha modificado este valor: newTask => valor previo: ${prev} - valor actual: ${current}`)
+})
+
 
     return  {
       tasks,
@@ -78,6 +97,7 @@ export default {
       isDesktop,
       addTask,
       newTask,
+      sizeOfCompletedTasks,
     }
   }
 /*   data(){
