@@ -75,7 +75,7 @@ export default {
         task: inputText.value,
         isCompleted: false,
       });
-    newTask.value=""; 
+    /* newTask.value="";  */
     }
 
 //computed properties
