@@ -2,7 +2,9 @@
 <!-- no deben haber dos elementos al mismo nivel se debería usar el div -->
 
 <!-- con el keyup manda a la presión de la tecla con el enter solo para esa tecla -->
- <input type="text" v-model="newTask" @keyup.enter="addTask"/>
+ <!-- <input type="text" v-model="newTask" @keyup.enter="addTask"/> -->
+ 
+ <TodoForm @text="addTask"/>
  <div class="">
   <p>Total de tareas: {{sizeOfCompletedTasks}}</p>
  </div>
@@ -25,11 +27,13 @@
 import{ v4 as uuidv8 } from "uuid";
 import { computed, ref, watch    } from "vue";
 import TodoItem from "./TodoItem.vue";
+import TodoForm from "./TodoForm.vue";
 
 export default {
   name: "todo",
   components: {
     TodoItem,
+    TodoForm,
 },
 
 
@@ -65,13 +69,13 @@ export default {
  
 
 // añadir methods
-    const addTask = ()=>{
+    const addTask = ({ inputText}) => {
       tasks.value.push({
         id:uuidv8(),
-        task: newTask.value,
+        task: inputText.value,
         isCompleted: false,
       });
-      newTask.value="";
+    newTask.value=""; 
     }
 
 //computed properties
