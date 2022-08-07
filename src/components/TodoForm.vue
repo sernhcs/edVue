@@ -1,5 +1,5 @@
 <template>
-    <input type="text" v-model="newTask" @keyup.enter="addTask"/>
+    <input type="text" v-model="inputText" @keyup.enter="addTask"/>
 </template>
 <script>
 import{ref} from "vue";
@@ -14,6 +14,7 @@ export default {
 
         return {
             inputText,
+          addTask
         };
     },
 }

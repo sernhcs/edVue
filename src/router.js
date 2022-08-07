@@ -7,7 +7,7 @@ import UserConfig from './views/UserConfig.vue';
 import login from "./views/login.vue";
 import NotFound from "./views/NotFound.vue";
 
-const Home = () => import("./views/Home.vue"); /* adiciona la ruta de forma dinamica */
+const Home = () => import("./views/home.vue"); /* adiciona la ruta de forma dinamica */
 const about  = () => import("./views/about.vue");
 
 const beforeEnterHook = (to)=> {

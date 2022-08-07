@@ -1,31 +1,31 @@
 <template>
-<!-- no deben haber dos elementos al mismo nivel se debería usar el div -->
+  <!-- no deben haber dos elementos al mismo nivel se debería usar el div -->
 
-<!-- con el keyup manda a la presión de la tecla con el enter solo para esa tecla -->
- <!-- <input type="text" v-model="newTask" @keyup.enter="addTask"/> -->
- 
- <TodoForm @text="addTask"/>
- <div class="">
-  <p>Total de tareas: {{sizeOfCompletedTasks}}</p>
- </div>
- <ul>
-   
+  <!-- con el keyup manda a la presión de la tecla con el enter solo para esa tecla -->
+  <!-- <input type="text" v-model="newTask" @keyup.enter="addTask"/> -->
+
+  <TodoForm @text="addTask"/>
+  <div class="">
+    <p>Total de tareas: {{ sizeOfCompletedTasks }}</p>
+  </div>
+  <ul>
+
     <!--  
      v else es el sino, en este caso si es falso aparece, si es verdadero aparece el otro mensaje de description
      v-bind enlaza y los task.ids, se puede reemplazar :
     -->
-   <TodoItem
-          
-    v-for="task in tasks" 
-    :key="task.id"
-    :task="task"
-    :is-desktop="isDesktop"
+    <TodoItem
+
+        v-for="task in tasks"
+        :key="task.id"
+        :task="task"
+        :is-desktop="isDesktop"
     />
   </ul>
 </template>
 <script>
-import{ v4 as uuidv8 } from "uuid";
-import { computed, ref, watch    } from "vue";
+import {v4 as uuidv8} from "uuid";
+import {computed, ref, watch} from "vue";
 import TodoItem from "./TodoItem.vue";
 import TodoForm from "./TodoForm.vue";
 
@@ -34,66 +34,66 @@ export default {
   components: {
     TodoItem,
     TodoForm,
-},
+  },
 
 
-  setup () {
+  setup() {
     const tasks = ref([
       {
-        id:uuidv8(),
+        id: uuidv8(),
         task: 'Crear curso',
         isCompleted: true
       },
       {
-        id:uuidv8(),
+        id: uuidv8(),
         task: 'Revisar comentarios',
         isCompleted: true
       },
       {
-        id:uuidv8(),
+        id: uuidv8(),
         task: 'Grabar nuevas secciones',
         isCompleted: false
-      }, 
+      },
       {
-        id:uuidv8(),
+        id: uuidv8(),
         task: 'Mejorar contenido',
         isCompleted: false
       },
-      
-    ]); 
+
+    ]);
     const activeColor = ref("#ffff");
     const background = ref("blue");
     const fontSize = ref(16);
     const isDesktop = ref(true);
     const newTask = ref("");
- 
+
 
 // añadir methods
-    const addTask = ({ inputText}) => {
+    const addTask = ({inputText}) => {
       tasks.value.push({
-        id:uuidv8(),
+        id: uuidv8(),
         task: inputText.value,
         isCompleted: false,
       });
-    /* newTask.value="";  */
+      /* newTask.value="";  */
     }
 
 //computed properties
-const sizeOfCompletedTasks = computed(() =>{
-  const completedTasks = tasks.value.filter((task)=> {
-    return task.isCompleted === true;
-  });
-  return completedTasks.length;
-});
+    const sizeOfCompletedTasks = computed(() => {
+      const completedTasks = tasks.value.filter((task) => {
+        return task.isCompleted === true;
+      });
+      return completedTasks.length;
+    });
 
 
 //watchers
-watch(newTask, (current, prev)=> {
-  console.log(`se ha modificado este valor: newTask => valor previo: ${prev} - valor actual: ${current}`)
-})
+    watch(newTask, (current, prev) => {
+      console.log(`se ha modificado este valor: newTask => valor previo: ${prev} - valor actual: ${current}`)
+    })
 
 
-    return  {
+    return {
       tasks,
       activeColor,
       background,
@@ -104,37 +104,37 @@ watch(newTask, (current, prev)=> {
       sizeOfCompletedTasks,
     }
   }
-/*   data(){
-    return{
-     tasks : [
-        {
-          id:uuidv8(),
-          task: 'Crear curso',
-          isCompleted: false
-        },
-        {
-          id:uuidv8(),
-          task: 'Revisar comentarios',
-          isCompleted: false
-        },
-        {
-          id:uuidv8(),
-          task: 'Grabar nuevas secciones',
-          isCompleted: false
-        }, 
-        {
-          id:uuidv8(),
-          task: 'Mejorar contenido',
-          isCompleted: false
-        },
-      ],
-      activeColor: "#fff",
-      background:'green',
-      fontSize: 16,
-      isDesktop: true,
-      newTask:"",
-    };
-  }, */
+  /*   data(){
+      return{
+       tasks : [
+          {
+            id:uuidv8(),
+            task: 'Crear curso',
+            isCompleted: false
+          },
+          {
+            id:uuidv8(),
+            task: 'Revisar comentarios',
+            isCompleted: false
+          },
+          {
+            id:uuidv8(),
+            task: 'Grabar nuevas secciones',
+            isCompleted: false
+          },
+          {
+            id:uuidv8(),
+            task: 'Mejorar contenido',
+            isCompleted: false
+          },
+        ],
+        activeColor: "#fff",
+        background:'green',
+        fontSize: 16,
+        isDesktop: true,
+        newTask:"",
+      };
+    }, */
   /* methods: {
     addTask(){
       console.log('tecla presionada');
@@ -146,7 +146,7 @@ watch(newTask, (current, prev)=> {
       this.newTask="";
     }
   } */
-};       
+};
 /* return {
           title: "Hi",
           description:"Este es mi primer vue",
