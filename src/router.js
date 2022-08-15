@@ -9,6 +9,7 @@ import NotFound from "./views/NotFound.vue";
 
 const Home = () => import("./views/home.vue"); /* adiciona la ruta de forma dinamica */
 const about  = () => import("./views/about.vue");
+const Product =() => import("./views/Product.vue");
 
 const beforeEnterHook = (to)=> {
    /*  console.log("Path: " + to.path); */
@@ -46,6 +47,11 @@ const routes= [
             },
         ],
     },
+    {
+        path:"/product",
+        name: "Product",
+        component: Product,
+    }, 
     {
         path: "/:pathMatch(.*)*", /* significa todas las rutas */
         name: "NotFound",

@@ -4,10 +4,11 @@
     <div class="flex space-evenly">
     <router-link to="/users/sergio/profile"> Go to profile </router-link>
     <router-link to="/users/sergio/config"> Go to config </router-link>
+    
     <router-view /> <!-- te manda a la ruta de forma anidada -->
-
-    </div>
     {{message}}
+    </div>
+    
 </template>
 
 

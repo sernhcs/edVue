@@ -36,7 +36,7 @@ export default {
  
     //metodos de ciclo de vida 
     onMounted(() => {
-      console.log('el componente ha sido montado a mi aplicación');
+     /*  console.log('el componente ha sido montado a mi aplicación'); */
       title.value= 'Bienvenidos al curso de Vue.js';
     });
 
@@ -92,10 +92,18 @@ export default {
 
 .flex{
   display: flex;
+  max-width: 500px;
+  margin:auto;
 }
 
 .space-evenly{
 justify-content: space-evenly;
+}
+.space-between{
+  justify-content: space-between;
+}
+.align-center{
+  align-items: center;
 }
 .btn {
   background: blue;
