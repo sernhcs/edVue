@@ -5,7 +5,7 @@
   <!-- <input type="text" v-model="newTask" @keyup.enter="addTask"/> -->
 
   <TodoForm @text="addTask" />
-  <div class="felx  space-evenly align-center">
+  <div class="flex space-evenly align-center">
     <p>Total de tareas completadas: {{ sizeOfCompletedTasks }}</p>
   </div>
   <ul>
@@ -21,6 +21,7 @@
     :is-desktop="isDesktop" 
     :complete-task="completeTask" 
     :delete-task="deleteTask"
+    :rename-task="renameTask"
     />
   </ul>
 </template>
@@ -30,6 +31,7 @@ import { onMounted, ref, watch } from "vue";
 import TodoItem from "./TodoItem.vue";
 import TodoForm from "./TodoForm.vue";
 import useTodo from "../composables/useTodo";
+/* import { rename } from "fs"; */ 
 
 export default {
   name: "todo",
@@ -40,7 +42,7 @@ export default {
 
   setup() {
     /* const tasks = ref(); */
-    const {tasks, addTask, deleteTask, completeTask, sizeOfCompletedTasks} = useTodo();
+    const {tasks, addTask, deleteTask, completeTask, renameTask, sizeOfCompletedTasks} = useTodo();
 
     const activeColor = ref("#ffff");
     const background = ref("blue");
@@ -55,28 +57,31 @@ export default {
         id: uuidv8(),
         task: 'Crear curso',
         isCompleted: false,
+        isEdit: false,
       },
       {
         id: uuidv8(),
         task: 'Revisar comentarios',
         isCompleted: false,
+        isEdit: false,
       },
       {
         id: uuidv8(),
         task: 'Grabar nuevas secciones',
         isCompleted: false,
+        isEdit: false,
       },
       {
         id: uuidv8(),
         task: 'Mejorar contenido',
         isCompleted: false,
+        isEdit: false,
       },
 
     ]
     }),
 
 
-   
 
     //watchers
     watch(newTask, (current, prev) => {
@@ -102,6 +107,7 @@ export default {
       addTask,
       completeTask,
       deleteTask,
+      renameTask,
       newTask,
       sizeOfCompletedTasks,
     }

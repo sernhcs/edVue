@@ -11,7 +11,7 @@
       <router-link to="/about"> Ir a about</router-link>
   </div>
      
-  <button class="btn" @click="goToUrl('/users/sergio')">      Ir a usuario     </button>
+  <button class="btn" @click="goToUrl('/users/sergio')">  Ir a usuario  </button>
  
   <router-view /> 
   
@@ -30,8 +30,8 @@ export default {
     // propiedades reactivas
     const title= ref("Hi");
     const description = ref("Mi primer vue");
-    const isVisible = ref(false);
-    const name= ref("sergio");
+    const isVisible = ref(true);
+    const name= ref("Sergio");
     const router = useRouter(); /* $router reemplazando */
  
     //metodos de ciclo de vida 
@@ -47,9 +47,9 @@ export default {
 
     const goToUrl =() => {
         router.push({
-        name:'User', 
-        params:{id: name.value, message: title.value},
-        query: { lastname:"Castillo"},
+          name:'User', 
+          params:{id: name.value, message: title.value},
+          query: { lastname:"Castillo"},
         });
     };
 

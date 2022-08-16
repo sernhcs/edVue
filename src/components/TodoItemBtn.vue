@@ -1,7 +1,7 @@
 <template>
     <button :class="textClass" v-show="!(task.isCompleted && hideOnCompleted)" @click="handleClick(task)">
         <slot>
-            Completar
+            completar
         </slot>
     </button>
 </template>
@@ -30,5 +30,8 @@ button {
 
 .delete {
     color: red;
+}
+.rename{
+    color: blueviolet;
 }
 </style>
